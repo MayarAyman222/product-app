@@ -1,4 +1,4 @@
-import {  OnInit } from '@angular/core';
+import {  importProvidersFrom, OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -7,12 +7,15 @@ import { RouterOutlet } from '@angular/router';
 import { Product } from '../interfaces/interface';
 import { ProductService } from '../services/product.service';
 import { RouterLink } from '@angular/router';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-products-list',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule , RouterLink],
+  imports: [CommonModule, FormsModule, RouterModule , RouterLink ,HttpClientModule , RouterOutlet],
+  
   templateUrl: './products-list.component.html',
-  styleUrls: ['./products-list.component.css']
+  styleUrls: ['./products-list.component.css'],
+ 
 })
 export class ProductsListComponent implements OnInit {
   products: Product[] = [];

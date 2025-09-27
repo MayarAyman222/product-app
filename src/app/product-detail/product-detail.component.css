@@ -1,0 +1,8 @@
+  .main-image { border-radius: .6rem; }
+    .thumb { margin-right: .5rem; border: 2px solid transparent; }
+    .thumb:hover { border-color: rgba(0,0,0,0.12); transform: translateY(-2px); }
+    .image-modal {
+      position: fixed; inset: 0; background: rgba(0,0,0,.7); display:flex; justify-content:center; align-items:center; z-index:1050;
+    }
+    .image-modal-img { max-width:92%; max-height:92%; border-radius:.6rem; box-shadow:0 10px 40px rgba(0,0,0,.6); }
+  

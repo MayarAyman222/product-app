@@ -1,25 +1,21 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { RouterOutlet } from '@angular/router';
-import { RouterLink } from '@angular/router';
+import { NavbarComponent } from './navbar/navbar.component';
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-root',
   standalone: true,
-   imports: [RouterOutlet , RouterLink],
+  imports: [CommonModule, RouterOutlet, NavbarComponent],
   template: `
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-      <div class="container">
-        <a class="navbar-brand" routerLink="/products">My Shop</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </div>
-    </nav>
+  
+    <app-navbar *ngIf="!isLoginPage()" ></app-navbar>
 
-    <main class="py-4">
-      <router-outlet></router-outlet>
-    </main>
+   
+    <router-outlet></router-outlet>
 
+  
     <footer class="text-center py-3 text-muted">
       © {{ currentYear }} My Shop
     </footer>
@@ -27,5 +23,10 @@ import { RouterLink } from '@angular/router';
 })
 export class AppComponent {
   currentYear = new Date().getFullYear();
-}
 
+  constructor(private router: Router) {}
+
+  isLoginPage() {
+    return this.router.url.includes('login');
+  }
+}

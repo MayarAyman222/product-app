@@ -3,11 +3,17 @@ import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http'; // ✅ use provideHttpClient, not HttpClientModule
 
 import { routes } from './app.routes';
+import { HTTP_INTERCEPTORS,  withInterceptorsFromDi } from '@angular/common/http';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes), // ✅ pass routes here
-    provideHttpClient(),   // ✅ use this instead of HttpClientModule
+    provideRouter(routes), 
+    provideHttpClient(),   
+      provideHttpClient(withInterceptorsFromDi()),
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+
   ]
 };
